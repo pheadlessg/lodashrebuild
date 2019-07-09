@@ -95,3 +95,35 @@ describe('#forEach', () => {
     expect(spy.callCount).to.equal(3);
   });
 });
+
+describe('#filter', () => {
+  const isTwo = function(x) {
+    return x === 2;
+  };
+  it('returns a new array', () => {
+    const arr1 = [];
+    expect(_.filter(arr1)).to.not.equal(arr1);
+  });
+  it('performs a given function on a single element array and returns that element if function result is true', () => {
+    expect(_.filter([2], isTwo)).to.eql([2]);
+    expect(_.filter([1], isTwo)).to.eql([]);
+  });
+  it('iterates over a new array, performs a function which returns true or false and passes all elements which pass to new array', () => {
+    expect(_.filter([1, 2, 3], isTwo)).to.eql([2]);
+    expect(_.filter([1, 3, 5, 7], isTwo)).to.eql([]);
+  });
+  it('returns a new array when passed an object', () => {
+    const func = function(x) {
+      return x === x;
+    };
+    const obj = { name: 'Sean', age: 35 };
+    expect(_.filter(obj, func)).to.be.a('array');
+  });
+  it('iterates over values in an object, performs a function on each and passes those values to a new array if they pass', () => {
+    const func = function(x) {
+      return x === x;
+    };
+    const person = { name: 'Jimbob', age: 30 };
+    expect(_.filter(person, func)).to.eql(['Jimbob', 30]);
+  });
+});

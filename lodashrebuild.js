@@ -57,7 +57,21 @@ _.forEach = (coll, func) => {
 };
 
 // Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection).
-_.filter = (collection, func) => {};
+_.filter = (collection, func) => {
+  let newArr = [];
+  if (!Array.isArray(collection)) {
+    newArr = Object.values(collection);
+  } else {
+    newArr = [...collection];
+  }
+  const finArr = [];
+  for (let i = 0; i < newArr.length; i++) {
+    if (func(newArr[i])) {
+      finArr.push(newArr[i]);
+    }
+  }
+  return finArr;
+};
 
 // Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:(accumulator, value, index|key, collection).
 _.reduce = (collection, func, accumulator) => {};
