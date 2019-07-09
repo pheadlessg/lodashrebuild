@@ -82,3 +82,16 @@ describe('#map', () => {
     expect(_.map({ name: 'Harry', age: 10 }, squared)).to.eql([NaN, 100]);
   });
 });
+
+describe('#forEach', () => {
+  it('iterates over each element in the array', () => {
+    const spy = sinon.spy();
+    _.forEach(['name1', 'name2', 'name3', 'name4'], spy);
+    expect(spy.callCount).to.equal(4);
+  });
+  it('iterates over each key value pair in an object', () => {
+    const spy = sinon.spy();
+    _.forEach({ name: 'Harry', age: 10, headSize: 'hulking' }, spy);
+    expect(spy.callCount).to.equal(3);
+  });
+});

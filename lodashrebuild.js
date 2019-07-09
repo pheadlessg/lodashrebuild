@@ -44,7 +44,17 @@ _.map = (collection, func) => {
 };
 
 // Iterates over elements of collection and invokes iteratee for each element. The iteratee is invoked with three arguments: (value, index|key, collection). Iteratee functions may exit iteration early by explicitly returning false.
-_.forEach = (collection, func) => {};
+_.forEach = (coll, func) => {
+  if (Array.isArray(coll)) {
+    for (let i = 0; i < coll.length; i++) {
+      func();
+    }
+  } else {
+    for (const property in coll) {
+      func();
+    }
+  }
+};
 
 // Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection).
 _.filter = (collection, func) => {};
