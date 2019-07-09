@@ -13,7 +13,20 @@ _.take = (collection, x) => {
 };
 
 // Creates a duplicate-free version of an array, using SameValueZero for equality comparisons, in which only the first occurrence of each element is kept. The order of result values is determined by the order they occur in the array.
-_.uniq = collection => {};
+_.uniq = collection => {
+  const newArr = [...collection];
+  const absArr = newArr.map(num => {
+    if (num === -0) {
+      return Math.abs(num);
+    } else {
+      return num;
+    }
+  });
+  const noDups = absArr.filter((num, index) => {
+    return absArr.lastIndexOf(num) === index;
+  });
+  return noDups;
+};
 
 // Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection).
 _.map = (collection, func) => {};

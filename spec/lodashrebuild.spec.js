@@ -35,3 +35,20 @@ describe('#take', () => {
     expect(_.take([1, 2, 3], 4)).to.eql([1, 2, 3]);
   });
 });
+
+describe('#uniq', () => {
+  it('returns a new array', () => {
+    const arr = [];
+    expect(_.uniq(arr)).to.not.equal(arr);
+  });
+  it('returns a copy of the array when passed an array with no duplicates', () => {
+    expect(_.uniq([1, 2, 3])).to.eql([1, 2, 3]);
+  });
+  it('returns an new array without duplicate elements when passed an array with duplicate elements ', () => {
+    expect(_.uniq([50, 45, 45])).to.eql([50, 45]);
+    expect(_.uniq([-1, 1, -2, -2])).to.eql([-1, 1, -2]);
+  });
+  it('0 and -0 are equal values', () => {
+    expect(_.uniq([0, -0])).to.eql([0]);
+  });
+});
