@@ -1,15 +1,36 @@
 const _ = {};
 
+// This method returns the first argument it receives.
 _.identity = x => {
   return x;
 };
-_.take = (collection, x) => {};
+
+// Creates a slice of array with n elements taken from the beginning.
+_.take = (collection, x) => {
+  const newArr = [...collection];
+  if (x === undefined) return newArr.slice(0, 1);
+  return newArr.slice(0, x);
+};
+
+// Creates a duplicate-free version of an array, using SameValueZero for equality comparisons, in which only the first occurrence of each element is kept. The order of result values is determined by the order they occur in the array.
 _.uniq = collection => {};
+
+// Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection).
 _.map = (collection, func) => {};
+
+// Iterates over elements of collection and invokes iteratee for each element. The iteratee is invoked with three arguments: (value, index|key, collection). Iteratee functions may exit iteration early by explicitly returning false.
 _.forEach = (collection, func) => {};
+
+// Creates an array of values by running each element in collection thru iteratee. The iteratee is invoked with three arguments:(value, index|key, collection).
 _.filter = (collection, func) => {};
+
+// Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:(accumulator, value, index|key, collection).
 _.reduce = (collection, func, accumulator) => {};
+
+// Creates a function that is restricted to invoking func once. Repeat calls to the function return the value of the first invocation. The func is invoked with the this binding and arguments of the created function.
 _.once = func => {};
+
+// Creates a function that invokes func, with the this binding and arguments of the created function, while it's called less than n times. Subsequent calls to the created function return the result of the last func invocation.
 _.before = func => {};
 
 module.exports = _;
