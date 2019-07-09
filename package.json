@@ -1,0 +1,25 @@
+{
+  "name": "lodashrebuild",
+  "version": "1.0.0",
+  "description": "Rebuilding the lodash library to keep in practice",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha spec"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pheadlessg/lodashrebuild.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pheadlessg/lodashrebuild/issues"
+  },
+  "homepage": "https://github.com/pheadlessg/lodashrebuild#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "sinon": "^7.3.2"
+  }
+}
