@@ -74,7 +74,35 @@ _.filter = (collection, func) => {
 };
 
 // Reduces collection to a value which is the accumulated result of running each element in collection thru iteratee, where each successive invocation is supplied the return value of the previous. If accumulator is not given, the first element of collection is used as the initial value. The iteratee is invoked with four arguments:(accumulator, value, index|key, collection).
-_.reduce = (collection, func, accumulator) => {};
+_.reduce = (collection, func, accumulator) => {
+  if (Array.isArray(collection))
+    if (typeof collection[0] === 'number') {
+      accumulator = 0;
+    }
+  if (typeof collection[0] === 'string') {
+    accumulator = '';
+  }
+  if (typeof collection[0] === 'object') {
+    accumulator = [];
+  }
+  if (Array.isArray(collection)) {
+    for (let i = 0; i < collection.length; i++) {
+      accumulator = func(accumulator, collection[i], i, collection);
+    }
+  } else {
+    const keys = Object.keys(collection);
+    for (let i = 0; i < keys.length; i++) {
+      accumulator = func(
+        accumulator,
+        collection[keys[i]],
+        keys[i],
+        i,
+        collection
+      );
+    }
+  }
+  return accumulator;
+};
 
 // Creates a function that is restricted to invoking func once. Repeat calls to the function return the value of the first invocation. The func is invoked with the this binding and arguments of the created function.
 _.once = func => {};

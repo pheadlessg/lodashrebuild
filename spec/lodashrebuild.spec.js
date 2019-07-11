@@ -127,3 +127,32 @@ describe('#filter', () => {
     expect(_.filter(person, func)).to.eql(['Jimbob', 30]);
   });
 });
+
+describe('#reduce', () => {
+  it('returns initial value of acc when passed empty array', () => {
+    expect(_.reduce([], () => {}, 0)).to.equal(0);
+    expect(_.reduce([], () => {}, '')).to.equal('');
+  });
+  it('iterates over each element in an array', () => {
+    const spy = sinon.spy();
+    _.reduce(['name1', 'name2', 'name3', 'name4'], spy, 0);
+    expect(spy.callCount).to.equal(4);
+  });
+  it('produces the sum when given an array of numbers and a function to add them', () => {
+    const func = (acc, num) => {
+      return acc + num;
+    };
+    expect(_.reduce([1, 3, 2], func)).to.equal(6);
+  });
+  it('produces a new string when passed an array of letters and a function to add them', () => {
+    const func = (acc, num) => {
+      return acc + num;
+    };
+    expect(_.reduce(['a', 'b', 'c'], func)).to.equal('abc');
+  });
+  it('iterates over an object', () => {
+    const spy = sinon.spy();
+    _.reduce({ a: 1, b: 2, c: 3 }, spy, 0);
+    expect(spy.callCount).to.equal(3);
+  });
+});
