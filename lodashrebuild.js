@@ -105,7 +105,20 @@ _.reduce = (collection, func, accumulator) => {
 };
 
 // Creates a function that is restricted to invoking func once. Repeat calls to the function return the value of the first invocation. The func is invoked with the this binding and arguments of the created function.
-_.once = func => {};
+_.once = func => {
+  let value;
+  let isfuncRun = false;
+  return function(val) {
+    if (isfuncRun === false) {
+      let something = func(val);
+      isfuncRun = true;
+      value = something;
+      return something;
+    } else {
+      return value;
+    }
+  };
+};
 
 // Creates a function that invokes func, with the this binding and arguments of the created function, while it's called less than n times. Subsequent calls to the created function return the result of the last func invocation.
 _.before = func => {};

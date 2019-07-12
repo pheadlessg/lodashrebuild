@@ -156,3 +156,20 @@ describe('#reduce', () => {
     expect(spy.callCount).to.equal(3);
   });
 });
+
+describe('#once', () => {
+  it('creates a function', () => {
+    expect(_.once()).to.be.a('function');
+  });
+  it('returns the result (3) of a given function when is invoked', () => {
+    const func = x => x;
+    let returnedfunc = _.once(func);
+    expect(returnedfunc(3)).to.equal(3);
+  });
+  it('returns the result (3) of a given function when is invoked twice with different parameters', () => {
+    const func = x => x;
+    let returnedfunc = _.once(func);
+    expect(returnedfunc(3)).to.equal(3);
+    expect(returnedfunc(6)).to.equal(3);
+  });
+});
